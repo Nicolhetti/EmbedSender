@@ -19,7 +19,7 @@ El programa es ideal para desarrolladores y administradores de servidores que de
    - **Introduce la URL del Webhook**: Pega la URL del webhook en el campo correspondiente en la interfaz de Embed Sender.
 
 3. **Personaliza el Mensaje**:
-   - **Título y Descripción**: Escribe el título y la descripción del mensaje embebido. Puedes usar saltos de línea (`\n`) para separar párrafos en la descripción.
+   - **Título y Descripción**: Escribe el título y la descripción del mensaje embebido.
    - **Color**: Define el color del borde del mensaje embebido usando un código hexadecimal.
    - **Pie de Página**: Añade un texto de pie de página para proporcionar información adicional o firmar el mensaje.
 
