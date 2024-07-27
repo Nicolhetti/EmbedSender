@@ -19,9 +19,9 @@ jobs:
     - name: Setup .NET Framework
       uses: microsoft/setup-msbuild@v1.1
     - name: Restore dependencies
-      run: nuget restore YourSolution.sln
+      run: nuget restore EmbedSender.sln
     - name: Build
-      run: msbuild YourSolution.sln /p:Configuration=Release
+      run: msbuild EmbedSender.sln /p:Configuration=Release
     - name: Test
       run: |
         # Run your tests if you have any
