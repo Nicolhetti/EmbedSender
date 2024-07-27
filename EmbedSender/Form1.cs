@@ -24,8 +24,13 @@ namespace EmbedSender
             var embedDescription = rtxtDescription.Text;
             var embedColor = txtColor.Text;
             var embedFooter = txtFooter.Text;
+            var embedImage = txtImage.Text;
+            var embedThumbnail = txtThumbnail.Text;
+            var embedAuthorName = txtAuthorName.Text;
+            var embedAuthorUrl = txtAuthorUrl.Text;
+            var embedAuthorIcon = txtAuthorIcon.Text;
+            var embedFields = rtxtFields.Text;
 
-            // Validar y convertir el color hexadecimal
             int color;
             try
             {
@@ -50,7 +55,11 @@ namespace EmbedSender
                 description = embedDescription,
                 color = color,
                 timestamp = DateTime.UtcNow.ToString("o"),
-                footer = new { text = embedFooter }
+                footer = new { text = embedFooter },
+                image = new { url = embedImage },
+                thumbnail = new { url = embedThumbnail },
+                author = new { name = embedAuthorName, url = embedAuthorUrl, icon_url = embedAuthorIcon },
+                fields = ParseFields(embedFields)
             };
 
             var data = new { embeds = new[] { embed } };
@@ -79,7 +88,13 @@ namespace EmbedSender
                 embedTitle = txtTitle.Text,
                 embedDescription = rtxtDescription.Text,
                 embedColor = txtColor.Text,
-                embedFooter = txtFooter.Text
+                embedFooter = txtFooter.Text,
+                embedImage = txtImage.Text,
+                embedThumbnail = txtThumbnail.Text,
+                embedAuthorName = txtAuthorName.Text,
+                embedAuthorUrl = txtAuthorUrl.Text,
+                embedAuthorIcon = txtAuthorIcon.Text,
+                embedFields = rtxtFields.Text
             };
 
             try
@@ -106,6 +121,12 @@ namespace EmbedSender
                     rtxtDescription.Text = config["embedDescription"]?.ToString();
                     txtColor.Text = config["embedColor"]?.ToString();
                     txtFooter.Text = config["embedFooter"]?.ToString();
+                    txtImage.Text = config["embedImage"]?.ToString();
+                    txtThumbnail.Text = config["embedThumbnail"]?.ToString();
+                    txtAuthorName.Text = config["embedAuthorName"]?.ToString();
+                    txtAuthorUrl.Text = config["embedAuthorUrl"]?.ToString();
+                    txtAuthorIcon.Text = config["embedAuthorIcon"]?.ToString();
+                    rtxtFields.Text = config["embedFields"]?.ToString();
                 }
                 catch (Exception ex)
                 {
@@ -126,9 +147,19 @@ namespace EmbedSender
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private object[] ParseFields(string fieldsText)
         {
+            var fields = fieldsText.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            var fieldObjects = new object[fields.Length / 2];
 
+            for (int i = 0; i < fields.Length; i += 2)
+            {
+                var name = fields[i];
+                var value = fields[i + 1];
+                fieldObjects[i / 2] = new { name, value, inline = false };
+            }
+
+            return fieldObjects;
         }
     }
 }

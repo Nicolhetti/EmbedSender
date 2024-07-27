@@ -51,7 +51,7 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>9D0B72CCE431444C0A91043E17A9846E42C1E424</ManifestCertificateThumbprint>
@@ -60,7 +60,8 @@
     <ManifestKeyFile>generatedDigital.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestTimestampUrl>http://timestamp.digicert.com</ManifestTimestampUrl>
+    <ManifestTimestampUrl>
+    </ManifestTimestampUrl>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
