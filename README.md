@@ -1,32 +1,40 @@
 ## Embed Sender
 
-**Embed Sender** es una herramienta sencilla y eficiente para enviar notificaciones personalizadas a un canal de Discord a través de webhooks. Con una interfaz gráfica amigable, este programa permite a los usuarios configurar y enviar mensajes embebidos (embeds) con facilidad.
+### Descripción
 
-### ¿Para qué sirve?
+"Embed Sender" es una herramienta de Windows Forms diseñada para enviar notificaciones personalizadas a un canal específico en Discord mediante webhooks. Esta aplicación facilita la creación de mensajes embebidos (embeds) con varios campos personalizables, incluyendo título, descripción, color, imágenes, autor, y más.
 
-El programa es ideal para desarrolladores y administradores de servidores que desean notificar a sus comunidades sobre actualizaciones, eventos o cualquier otra información importante de manera visualmente atractiva. Los mensajes embebidos pueden incluir títulos, descripciones, enlaces, colores personalizados y más, haciendo que los anuncios sean más llamativos y organizados.
+---
+### Características
 
-### ¿Cómo usarlo?
+- **Webhook URL**: Configura la URL del webhook de Discord al que se enviará el mensaje.
+- **Título y Descripción del Embed**: Define el título y la descripción del mensaje embebido, con soporte para múltiples párrafos.
+- **Color**: Establece el color del embed usando un código hexadecimal.
+- **Imágenes**: Añade una imagen principal y una miniatura al embed.
+- **Autor**: Incluye nombre, URL y un icono para el autor del mensaje.
+- **Campos Adicionales**: Agrega múltiples campos con nombre y valor para información adicional.
+- **Guardar y Cargar Configuraciones**: Guarda configuraciones personalizadas y cárgalas cuando sea necesario.
 
-1. **Descarga y Ejecuta**: Descarga el programa y ejecútalo en tu sistema Windows.
+---
+### Uso
 
-2. **Configura el Webhook**:
-   - **Obtener el Webhook**: 
-     1. Ve a tu servidor de Discord y selecciona el canal donde deseas recibir las notificaciones.
-     2. Accede a la configuración del canal y selecciona "Integraciones".
-     3. Haz clic en "Crear webhook" y copia la URL del webhook.
+1. **Configura el Webhook URL**: Introduce la URL del webhook de Discord. Puedes obtener la URL del webhook creando uno en tu servidor de Discord:
+   - Ve a tu servidor de Discord.
+   - Dirígete a "Configuración del servidor" > "Integraciones" > "Webhooks".
+   - Crea un nuevo webhook y copia la URL.
 
-   - **Introduce la URL del Webhook**: Pega la URL del webhook en el campo correspondiente en la interfaz de Embed Sender.
+2. **Personaliza el Mensaje Embed**:
+   - **Título y Descripción**: Ingresa el título y la descripción de tu mensaje.
+   - **Color**: Introduce el color del embed en formato hexadecimal (sin el `#`).
+   - **Imágenes**: Proporciona las URLs para la imagen principal y la miniatura.
+   - **Autor**: Añade el nombre, URL e icono del autor.
+   - **Campos**: Agrega campos adicionales según sea necesario.
 
-3. **Personaliza el Mensaje**:
-   - **Título y Descripción**: Escribe el título y la descripción del mensaje embebido.
-   - **Color**: Define el color del borde del mensaje embebido usando un código hexadecimal.
-   - **Pie de Página**: Añade un texto de pie de página para proporcionar información adicional o firmar el mensaje.
+3. **Enviar, Guardar y Cargar**:
+   - **Enviar**: Haz clic en el botón "Enviar" para enviar el embed a Discord.
+   - **Guardar**: Guarda tu configuración para uso futuro.
+   - **Cargar**: Carga configuraciones previamente guardadas.
 
-4. **Enviar Notificación**: Haz clic en el botón "Enviar" para enviar el mensaje embebido al canal de Discord especificado.
+---
 
-5. **Guardar y Cargar Configuración**: Puedes guardar la configuración de tu mensaje en un archivo para cargarlo más tarde y evitar configurar todo nuevamente.
-
-### Nota Importante
-
-Para obtener la URL del webhook, necesitas permisos de administrador o permisos específicos para crear webhooks en el servidor de Discord. Asegúrate de proteger esta URL, ya que cualquiera que la tenga puede enviar mensajes al canal asociado.
+Para más detalles sobre cómo configurar webhooks en Discord, consulta la [documentación oficial de Discord](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks).
