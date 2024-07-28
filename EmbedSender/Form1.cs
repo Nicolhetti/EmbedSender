@@ -71,12 +71,12 @@ namespace EmbedSender
                     var content = new StringContent(JObject.FromObject(data).ToString(), System.Text.Encoding.UTF8, "application/json");
                     var response = await httpClient.PostAsync(webhookUrl, content);
                     response.EnsureSuccessStatusCode();
-                    MessageBox.Show("Notificación enviada a Discord con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Embed enviado a Discord con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"No se pudo enviar la notificación: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"El embed no se pudo enviar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
