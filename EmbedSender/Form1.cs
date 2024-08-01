@@ -9,12 +9,9 @@ namespace EmbedSender
 {
     public partial class Form1 : Form
     {
-        private const string ConfigFilePath = "config.json";
-
         public Form1()
         {
             InitializeComponent();
-            LoadConfiguration();
         }
 
         private async void btnSend_Click(object sender, EventArgs e)
@@ -82,68 +79,72 @@ namespace EmbedSender
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var config = new
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
-                webhookUrl = txtWebhookUrl.Text,
-                embedTitle = txtTitle.Text,
-                embedDescription = rtxtDescription.Text,
-                embedColor = txtColor.Text,
-                embedFooter = txtFooter.Text,
-                embedImage = txtImage.Text,
-                embedThumbnail = txtThumbnail.Text,
-                embedAuthorName = txtAuthorName.Text,
-                embedAuthorUrl = txtAuthorUrl.Text,
-                embedAuthorIcon = txtAuthorIcon.Text,
-                embedFields = rtxtFields.Text
-            };
+                saveFileDialog.Filter = "JSON Files (*.json)|*.json";
+                saveFileDialog.DefaultExt = "json";
+                saveFileDialog.AddExtension = true;
+                saveFileDialog.FileName = "config.json"; // Nombre predeterminado
 
-            try
-            {
-                File.WriteAllText(ConfigFilePath, JObject.FromObject(config).ToString());
-                MessageBox.Show("Configuración guardada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"No se pudo guardar la configuración: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    var config = new
+                    {
+                        webhookUrl = txtWebhookUrl.Text,
+                        embedTitle = txtTitle.Text,
+                        embedDescription = rtxtDescription.Text,
+                        embedColor = txtColor.Text,
+                        embedFooter = txtFooter.Text,
+                        embedImage = txtImage.Text,
+                        embedThumbnail = txtThumbnail.Text,
+                        embedAuthorName = txtAuthorName.Text,
+                        embedAuthorUrl = txtAuthorUrl.Text,
+                        embedAuthorIcon = txtAuthorIcon.Text,
+                        embedFields = rtxtFields.Text
+                    };
+
+                    try
+                    {
+                        File.WriteAllText(saveFileDialog.FileName, JObject.FromObject(config).ToString());
+                        MessageBox.Show("Configuración guardada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"No se pudo guardar la configuración: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            if (File.Exists(ConfigFilePath))
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                try
-                {
-                    var config = JObject.Parse(File.ReadAllText(ConfigFilePath));
+                openFileDialog.Filter = "JSON Files (*.json)|*.json";
 
-                    txtWebhookUrl.Text = config["webhookUrl"]?.ToString();
-                    txtTitle.Text = config["embedTitle"]?.ToString();
-                    rtxtDescription.Text = config["embedDescription"]?.ToString();
-                    txtColor.Text = config["embedColor"]?.ToString();
-                    txtFooter.Text = config["embedFooter"]?.ToString();
-                    txtImage.Text = config["embedImage"]?.ToString();
-                    txtThumbnail.Text = config["embedThumbnail"]?.ToString();
-                    txtAuthorName.Text = config["embedAuthorName"]?.ToString();
-                    txtAuthorUrl.Text = config["embedAuthorUrl"]?.ToString();
-                    txtAuthorIcon.Text = config["embedAuthorIcon"]?.ToString();
-                    rtxtFields.Text = config["embedFields"]?.ToString();
-                }
-                catch (Exception ex)
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    MessageBox.Show($"No se pudo cargar la configuración: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("El archivo de configuración no existe.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
+                    try
+                    {
+                        var config = JObject.Parse(File.ReadAllText(openFileDialog.FileName));
 
-        private void LoadConfiguration()
-        {
-            if (File.Exists(ConfigFilePath))
-            {
-                btnLoad_Click(null, EventArgs.Empty);
+                        txtWebhookUrl.Text = config["webhookUrl"]?.ToString();
+                        txtTitle.Text = config["embedTitle"]?.ToString();
+                        rtxtDescription.Text = config["embedDescription"]?.ToString();
+                        txtColor.Text = config["embedColor"]?.ToString();
+                        txtFooter.Text = config["embedFooter"]?.ToString();
+                        txtImage.Text = config["embedImage"]?.ToString();
+                        txtThumbnail.Text = config["embedThumbnail"]?.ToString();
+                        txtAuthorName.Text = config["embedAuthorName"]?.ToString();
+                        txtAuthorUrl.Text = config["embedAuthorUrl"]?.ToString();
+                        txtAuthorIcon.Text = config["embedAuthorIcon"]?.ToString();
+                        rtxtFields.Text = config["embedFields"]?.ToString();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"No se pudo cargar la configuración: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
 
