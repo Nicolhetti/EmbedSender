@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 
@@ -17,6 +16,7 @@ namespace EmbedSender
         private async void btnSend_Click(object sender, EventArgs e)
         {
             var webhookUrl = txtWebhookUrl.Text;
+            var messageContent = txtMessage.Text;  // Nuevo campo de mensaje
             var embedTitle = txtTitle.Text;
             var embedDescription = rtxtDescription.Text;
             var embedColor = txtColor.Text;
@@ -59,7 +59,11 @@ namespace EmbedSender
                 fields = ParseFields(embedFields)
             };
 
-            var data = new { embeds = new[] { embed } };
+            var data = new
+            {
+                content = messageContent,  // Añadir el mensaje al payload
+                embeds = new[] { embed }
+            };
 
             try
             {
@@ -68,12 +72,12 @@ namespace EmbedSender
                     var content = new StringContent(JObject.FromObject(data).ToString(), System.Text.Encoding.UTF8, "application/json");
                     var response = await httpClient.PostAsync(webhookUrl, content);
                     response.EnsureSuccessStatusCode();
-                    MessageBox.Show("Embed enviado a Discord con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Mensaje y embed enviados a Discord con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"El embed no se pudo enviar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"El mensaje y embed no se pudieron enviar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -91,6 +95,7 @@ namespace EmbedSender
                     var config = new
                     {
                         webhookUrl = txtWebhookUrl.Text,
+                        messageContent = txtMessage.Text,
                         embedTitle = txtTitle.Text,
                         embedDescription = rtxtDescription.Text,
                         embedColor = txtColor.Text,
@@ -129,6 +134,7 @@ namespace EmbedSender
                         var config = JObject.Parse(File.ReadAllText(openFileDialog.FileName));
 
                         txtWebhookUrl.Text = config["webhookUrl"]?.ToString();
+                        txtMessage.Text = config["messageContent"]?.ToString();
                         txtTitle.Text = config["embedTitle"]?.ToString();
                         rtxtDescription.Text = config["embedDescription"]?.ToString();
                         txtColor.Text = config["embedColor"]?.ToString();
