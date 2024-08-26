@@ -1,11 +1,9 @@
-## Embed Sender
+# Embed Sender
 
-### Descripción
+**Embed Sender** es una herramienta de Windows Forms diseñada para enviar notificaciones personalizadas a un canal específico en Discord mediante webhooks. Esta aplicación facilita la creación de mensajes embebidos (embeds) con varios campos personalizables, incluyendo título, descripción, color, imágenes, autor, y más.
 
-"Embed Sender" es una herramienta de Windows Forms diseñada para enviar notificaciones personalizadas a un canal específico en Discord mediante webhooks. Esta aplicación facilita la creación de mensajes embebidos (embeds) con varios campos personalizables, incluyendo título, descripción, color, imágenes, autor, y más.
 
----
-### Características
+## Características
 
 - **Webhook URL**: Configura la URL del webhook de Discord al que se enviará el mensaje.
 - **Título y Descripción del Embed**: Define el título y la descripción del mensaje embebido, con soporte para múltiples párrafos.
@@ -15,8 +13,7 @@
 - **Campos Adicionales**: Agrega múltiples campos con nombre y valor para información adicional.
 - **Guardar y Cargar Configuraciones**: Guarda configuraciones personalizadas y cárgalas cuando sea necesario.
 
----
-### Uso
+## Uso
 
 1. **Configura el Webhook URL**: Introduce la URL del webhook de Discord. Puedes obtener la URL del webhook creando uno en tu servidor de Discord:
    - Ve a tu servidor de Discord.
@@ -34,6 +31,26 @@
    - **Enviar**: Haz clic en el botón "Enviar" para enviar el embed a Discord.
    - **Guardar**: Guarda tu configuración para uso futuro.
    - **Cargar**: Carga configuraciones previamente guardadas.
+
+## Contribuciones
+
+Las contribuciones son bienvenidas. Si tienes ideas para mejorar el programa o encuentras algún error, por favor sigue estos pasos:
+
+1. Haz un fork de este repositorio.
+2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
+3. Realiza tus cambios y haz commit (`git commit -m 'Agregar nueva funcionalidad'`).
+4. Sube tus cambios (`git push origin feature/nueva-funcionalidad`).
+5. Abre un Pull Request en GitHub.
+
+## Licencia
+
+Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+
+## Créditos
+
+Creado por [Nicolhetti](https://github.com/Nicolhetti).
+
+Tester [aleferreiro703](https://github.com/aleferreiro703)
 
 ---
 
