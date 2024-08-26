@@ -50,7 +50,7 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENS
 
 Creado por [Nicolhetti](https://github.com/Nicolhetti).
 
-Tester [aleferreiro703](https://github.com/aleferreiro703)
+Tester [aleferreiro7x](https://github.com/aleferreiro7x)
 
 ---
 
